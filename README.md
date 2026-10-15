@@ -1,85 +1,71 @@
+<div align="center">
+
+<img src="app/src/main/res/drawable/logo.png" alt="GranAccess logo" width="140"/>
+
 # GranAccess
 
-**GranAccess** es una aplicación desarrollada como parte de la asignatura **Dirección y Gestión de Proyectos** en la **Universidad de Granada** durante el curso académico 2024/2025. El objetivo principal de la aplicación es proporcionar un gestor de tareas accesible para un colegio pequeño, con especial atención a las necesidades de accesibilidad de los alumnos.
+**Accessible task-management app for a special-education school**
 
-## Tabla de Contenidos
+![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=flat&logo=kotlin&logoColor=white)
+![Android](https://img.shields.io/badge/Android-3DDC84?style=flat&logo=android&logoColor=white)
+![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-4285F4?style=flat&logo=jetpackcompose&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=firebase&logoColor=black)
 
-- [Descripción General](#descripción-general)
-  
-- [Funcionalidades](#funcionalidades)
-  
-  - [Administrador](#administrador)
-    
-  - [Profesor](#profesor)
-    
-  - [Alumno](#alumno)
-    
-- [Tecnología](#tecnología)
-  
-- [Requisitos para Configuración](#requisitos-para-configuración)
-  
-- [Instalación](#instalación)
-  
-- [Autor](#autor)
+</div>
 
 ---
 
-## Descripción General
+## Overview
 
-**GranAccess** está diseñada para facilitar la gestión y realización de tareas dentro de un entorno educativo. La aplicación admite diferentes tipos de usuarios (alumnos, profesores y administrador), y se centra en ofrecer una interfaz accesible adaptada a las preferencias visuales de los alumnos, permitiendo el uso exclusivo de texto, imágenes y audio para interactuar con los contenidos.
+GranAccess is an Android application built by a team of four for the **Project Management** course (*Dirección y Gestión de Proyectos*) at the **University of Granada** (2024/25).
 
-## Funcionalidades
+It helps a small school organise daily tasks for students with different accessibility needs. Each student can use the app in the format that suits them best — **text, pictograms or audio** — while teachers and an administrator manage tasks, menus and material requests from the same app.
 
-### Administrador
-El administrador tiene un rol central y es el único usuario con acceso completo a todas las funciones de la aplicación. Sus responsabilidades incluyen:
-- **Gestión de usuarios**: Crear y gestionar cuentas de alumnos y profesores.
-- **Gestión de tareas**: Crear, modificar y asignar tareas a alumnos, además de establecer el orden de los pasos en las tareas.
-- **Gestión del comedor**: Crear menús para el comedor escolar.
+## Features
 
-### Profesor
-Los profesores pueden:
-- **Solicitar materiales**: Enviar peticiones de materiales necesarios para sus clases.
+| Role | What they can do |
+|---|---|
+| **Administrator** | Create and manage student and teacher accounts · create, edit and assign step-by-step tasks · reorder task steps · manage the school canteen menus · send notifications |
+| **Teacher** | Request classroom materials |
+| **Student** | Log in with a picture-based or text-based login · complete assigned tasks step by step · fulfil material requests · place canteen orders by menu type |
 
-### Alumno
-Los alumnos tienen acceso a las siguientes funciones:
-- **Realización de tareas**: Completar tareas asignadas, incluyendo tareas genéricas y tareas específicas como solicitudes de materiales.
-- **Gestión del comedor**: Realizar comandas, especificando la cantidad de menús deseados por tipo.
+**Accessibility first:** every student has a profile that defines how content is shown (text only, images, or audio), and the login screen itself can be completed with pictures instead of a password.
 
-## Tecnología
+## Tech stack
 
-La aplicación está desarrollada en **Android Studio** y utiliza **Firebase** como base de datos en la nube. Se recomienda utilizar el plan **Blaze** (prepago) de Firebase para el correcto funcionamiento de las funcionalidades de backend.
+- **Language:** Kotlin
+- **UI:** Android Views + Jetpack Compose, Material Design
+- **Backend:** Firebase Authentication, Cloud Firestore and Firebase Storage
+- **Libraries:** Glide and Picasso (image loading), Gson, RecyclerView
+- **Min SDK:** 24 (Android 7.0) · **Target SDK:** 34
 
-## Requisitos para Configuración
+## Project structure
 
-Para probar esta aplicación, es necesario configurar un entorno de Firebase. Sigue los pasos a continuación:
+```
+app/src/main/java/com/example/granaccess/
+├── cuentas/   # Accounts: login (text / image), registration, user management, role views
+├── tareas/    # Tasks: creation, steps, assignment, notifications, canteen menus, materials
+└── ui/theme/  # Compose theme (colours, typography)
+```
 
-1. Configura una base de datos activa en **Firebase** con el plan **Blaze**.
-2. Integra la aplicación con tu base de datos de Firebase siguiendo la [documentación oficial de Firebase](https://firebase.google.com/docs).
-3. Crea una colección `usuarios` en tu base de datos y añade un documento con un campo `rol` cuyo valor sea `admin`. Este será el usuario administrador predeterminado.
+## Getting started
 
-**Nota:** La base de datos Firebase utilizada para el desarrollo estará operativa únicamente hasta la finalización del primer cuatrimestre del curso 2024/2025. Posteriormente, los usuarios interesados deberán configurar su propia instancia de Firebase para ejecutar la aplicación.
-
-## Instalación
-
-1. Descarga o clona este repositorio:
+1. Clone the repository and open it in **Android Studio**.
    ```bash
-   git clone https://github.com/tu-usuario/granaccess.git
+   git clone https://github.com/Ignaciorojasvalenzuela/GranAccess.git
+   ```
+2. Create your own Firebase project, enable **Authentication**, **Firestore** and **Storage**, and replace `app/google-services.json` with your project's file. The original development database is no longer active.
+3. In Firestore, create a `usuarios` collection with a document whose `rol` field is `admin` — this becomes the default administrator.
+4. Build and run on a device or emulator (Android 7.0+).
 
-2. Abre el proyecto en Android Studio.
-   
-3. Configura Firebase en el proyecto como se describe en la sección anterior.
-   
-4. Compila y ejecuta la aplicación en un dispositivo Android o emulador compatible.
+> Some backend features require Firebase's pay-as-you-go **Blaze** plan.
 
-## Autores
-Alejandro Coman Venceslá
+## My contribution
 
-Jose Antonio Fernandez Aranda
+I worked mainly on the **task-management module**: creating, editing and viewing step-by-step tasks, the **notification system** and the **canteen ordering** flow.
 
-Jesús Reyes de Toro
+## Team
 
-Ignacio Rojas Valenzuela
+Developed by Alejandro Coman Venceslá, José Antonio Fernández Aranda, Jesús Reyes de Toro and **Ignacio Rojas Valenzuela** — students of the Double Degree in Computer Engineering and Business Administration, University of Granada.
 
-
-Estudiantes de Ingeniería Informática y Administración y Dirección de Empresas.
-Universidad de Granada
+Original repository: [AleComan/GranAccess](https://github.com/AleComan/GranAccess)
